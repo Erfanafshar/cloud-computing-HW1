@@ -1,0 +1,37 @@
+1		vboxmanage showvminfo "VM1"					
+		vboxmanage list vms
+		
+2		vboxmanage showvminfo "VM1" --machinereadable	
+		vboxmanage list runningvms
+		
+		
+3.1		vboxmanage startvm "VM1"
+3.2		vboxmanage controlvm "VM1" poweroff
+
+4		vboxmanage modifyvm "VM1" --memory 2048		
+		vboxmanage modifyvm "VM1" --cpus 2
+
+5		VBoxManage export "VM1" --output "D:\A_newapp\VMs\tmp\new.ova"
+		VBoxManage import "D:\A_newapp\VMs\tmp\new.ova" --vsys 0 --vmname "VM3"
+		
+6		vboxmanage unregistervm "VM2"  
+		-delete
+
+7		VBoxManage guestcontrol "VM1" "ls -a"
+
+8
+
+VBoxManage guestcontrol "VM1" execute --image "/bin/ls" --username "erfan_afshar" --password "erfan"
+VBoxManage guestcontrol "VM1" mkdir erf
+VBoxManage guestcontrol "VM1" --username "erfan_afshar" --password "erfan" mkdir erf
+VBoxManage guestcontrol "VM1" run --exe "/bin/ls" --username "erfan_afshar" --password "erfan"  --wait-stdout
+VBoxManage guestcontrol "VM1" run --username "erfan_afshar" --password "erfan"  --wait-stdout --exe "/home/erfan_afshar/ls"
+VBoxManage guestcontrol "VM1" --username "erfan_afshar" --password "erfan" run --exe "/home/erfan_afshar/ls" --wait-stdout
+
+VBoxManage guestcontrol "VM1" run --exe /home/erfan_afshar/ls --username "erfan_afshar" --password "erfan" --wait-stdout
+VBoxManage --nologo guestcontrol "VM1" run --exe "/home/erfan_afshar/ls" --username "erfan_afshar" --password "erfan" --wait-exit --wait-stdout -- -l /usr
+
+VBoxManage guestcontrol "VM1" --username "erfan_afshar" --password "erfan" mkdir /home/erfan_afshar/xyz
+
+VBoxManage --nologo guestcontrol "VM1" execute --image "/home/erfan_afshar/ls" --username "erfan_afshar" --password "erfan"
+--wait-stderr --wait-stdout -- -l /usr
